@@ -2,7 +2,7 @@ import { Empresa } from './Empresa';
    import { CadastroCliente } from './CadastroCliente';
    import { ListagemClientes } from './ListagemClientes';
    import { Entrada } from './Entrada';
-   import { Cliente } from './models/Cliente';
+   import { Cliente } from '../models/Cliente';
 
    function main() {
     let empresa: Empresa = new Empresa();
