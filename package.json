@@ -1,0 +1,32 @@
+{
+  "name": "parte1-agenda-wb",
+  "version": "1.0.0",
+  "description": "Parte 1 da atividade de ts",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "ts-node src/main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasguerra12/parte1-agenda-wb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasguerra12/parte1-agenda-wb/issues"
+  },
+  "homepage": "https://github.com/lucasguerra12/parte1-agenda-wb#readme",
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@types/readline-sync": "^1.4.8",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.0.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}

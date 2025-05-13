@@ -1,0 +1,22 @@
+# Arquivos compilados
+dist/
+*.js
+*.js.map
+
+# Dependências
+node_modules/
+
+# Arquivos de log
+*.log
+
+# Variáveis de ambiente
+.env
+
+# IDEs e editores
+.idea/
+.vscode/
+*.swp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
