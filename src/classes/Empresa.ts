@@ -24,4 +24,26 @@ import { Cliente } from '../models/Cliente';
     public getServicos(): Array<Servico> {
         return this.servicos;
     }
+
+    public listarTop10Consumidores(): void {
+        console.log('\n---- Top 10 Consumidores ----\n');
+
+        const clientesComConsumo = this.clientes.map(cliente => ({
+            cliente: cliente,
+            totalConsumido: cliente.getProdutosConsumidos().length + cliente.getServicosConsumidos().length,
+        }));
+         clientesComConsumo.sort((a,b) =>  b.totalConsumido - a.totalConsumido);
+
+         const top10 = clientesComConsumo.slice(0,10);
+
+         if (top10.length > 0 ){
+            top10.forEach((item,index)=> {
+                console.log(`${index + 1}. Nome:  ${item.cliente.getNome()}-  (Total consumido: ${item.totalConsumido})`);
+            });
+        } else {
+            console.log ('Nenhum cliente cadastrado ainda.');
+        }
+
+        console.log('\n***** Fim da Lista *****\n')
+    }
    }
