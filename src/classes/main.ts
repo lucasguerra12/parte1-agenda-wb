@@ -3,12 +3,14 @@ import { Empresa } from './Empresa';
    import { ListagemClientes } from './ListagemClientes';
    import { Entrada } from './Entrada';
    import { Cliente } from '../models/Cliente';
+   import { CadastroProduto } from './CadastroProduto';
 
    function main() {
     let empresa: Empresa = new Empresa();
     let cadastro: CadastroCliente = new CadastroCliente(empresa.getClientes());
     let listagem: ListagemClientes = new ListagemClientes(empresa.getClientes());
     let entrada: Entrada = new Entrada();
+    let cadastroProduto = new CadastroProduto(empresa.getProdutos());
 
     let execucao = true;
 

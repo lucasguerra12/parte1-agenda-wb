@@ -8,4 +8,8 @@ export class Produto {
     public getNome(): string {
       return this.nome;
     }
+
+    public setNome(): string {
+      return this.nome;
+    }
   }
