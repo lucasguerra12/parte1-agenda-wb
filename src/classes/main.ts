@@ -5,6 +5,8 @@ import { Empresa } from '../classes/Empresa';
    import { Cliente } from '../models/Cliente';
    import { CadastroProduto } from '../classes/CadastroProduto';
    import { CadastroServico } from '../classes/CadastroServico';
+   import { Produto } from '../models/Produto';
+   import { Servico } from '../models/Servico';
 
    function main() {
     let empresa: Empresa = new Empresa();
@@ -28,6 +30,7 @@ import { Empresa } from '../classes/Empresa';
         console.log('8 - Cadastrar Serviço');
         console.log('9 - Atualizar Serviço');
         console.log('10 - Excluir Serviço');
+        console.log('11 - Registrar Consumo'); // Nova opção
         console.log('0 - Sair');
 
         let opcao = entrada.receberNumero('Por favor, escolha uma opção: ');
@@ -62,6 +65,37 @@ import { Empresa } from '../classes/Empresa';
                 break;
             case 10:
                 cadastroServico.excluir();
+                break;
+            case 11: // Nova lógica para registrar consumo
+                let nomeCliente = entrada.receberTexto('Digite o nome do cliente: ');
+                let cliente = empresa.getClientes().find(c => c.getNome() === nomeCliente);
+
+                if (cliente) {
+                    let tipoConsumo = entrada.receberNumero('Digite 1 para Produto ou 2 para Serviço: ');
+                    if (tipoConsumo === 1) {
+                        let nomeProduto = entrada.receberTexto('Digite o nome do produto: ');
+                        let produto = empresa.getProdutos().find(p => p.getNome() === nomeProduto);
+                        if (produto) {
+                            cliente.adicionarProdutoConsumido(produto);
+                            console.log('\nProduto registrado para o cliente.\n');
+                        } else {
+                            console.log('\nProduto não encontrado.\n');
+                        }
+                    } else if (tipoConsumo === 2) {
+                        let nomeServico = entrada.receberTexto('Digite o nome do serviço: ');
+                        let servico = empresa.getServicos().find(s => s.getNome() === nomeServico);
+                        if (servico) {
+                            cliente.adicionarServicoConsumido(servico);
+                            console.log('\nServiço registrado para o cliente.\n');
+                        } else {
+                            console.log('\nServiço não encontrado.\n');
+                        }
+                    } else {
+                        console.log('\nOpção inválida.\n');
+                    }
+                } else {
+                    console.log('\nCliente não encontrado.\n');
+                }
                 break;
             case 0:
                 execucao = false;
