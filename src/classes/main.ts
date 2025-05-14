@@ -1,15 +1,15 @@
-import { Empresa } from './Empresa';
-   import { CadastroCliente } from './CadastroCliente';
-   import { ListagemClientes } from './ListagemClientes';
-   import { Entrada } from './Entrada';
-   import { Cliente } from '../models/Cliente'; 
-   import { CadastroProduto } from './CadastroProduto';
-   import { CadastroServico } from './CadastroServico';
+import { Empresa } from '../classes/Empresa';
+   import { CadastroCliente } from '../classes/CadastroCliente';
+   import { ListagemClientes } from '../classes/ListagemClientes';
+   import { Entrada } from '../classes/Entrada';
+   import { Cliente } from '../models/Cliente';
+   import { CadastroProduto } from '../classes/CadastroProduto';
+   import { CadastroServico } from '../classes/CadastroServico';
 
    function main() {
     let empresa: Empresa = new Empresa();
-    let cadastro: CadastroCliente = new CadastroCliente(empresa.getClientes());
-    let listagem: ListagemClientes = new ListagemClientes(empresa.getClientes());
+    let cadastroCliente: CadastroCliente = new CadastroCliente(empresa.getClientes());
+    let listagemClientes: ListagemClientes = new ListagemClientes(empresa.getClientes());
     let entrada: Entrada = new Entrada();
     let cadastroProduto: CadastroProduto = new CadastroProduto(empresa.getProdutos());
     let cadastroServico: CadastroServico = new CadastroServico(empresa.getServicos());
@@ -34,16 +34,34 @@ import { Empresa } from './Empresa';
 
         switch (opcao) {
             case 1:
-                cadastro.cadastrar();
+                cadastroCliente.cadastrar();
                 break;
             case 2:
-                listagem.listar();
+                listagemClientes.listar();
                 break;
             case 3:
-                cadastro.atualizarCliente();
+                cadastroCliente.atualizarCliente();
                 break;
             case 4:
-                cadastro.excluirCliente();
+                cadastroCliente.excluirCliente();
+                break;
+            case 5:
+                cadastroProduto.cadastrar();
+                break;
+            case 6:
+                cadastroProduto.atualizar();
+                break;
+            case 7:
+                cadastroProduto.excluir();
+                break;
+            case 8:
+                cadastroServico.cadastrar();
+                break;
+            case 9:
+                cadastroServico.atualizar();
+                break;
+            case 10:
+                cadastroServico.excluir();
                 break;
             case 0:
                 execucao = false;
