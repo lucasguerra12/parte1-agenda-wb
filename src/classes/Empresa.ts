@@ -1,8 +1,8 @@
 import { Cliente } from '../models/Cliente';
-import { Produto } from '../models/Produto';
-import { Servico } from '../models/Servico';
+   import { Produto } from '../models/Produto';
+   import { Servico } from '../models/Servico';
 
-export class Empresa {
+   export class Empresa {
     private clientes: Array<Cliente>;
     private produtos: Array<Produto>;
     private servicos: Array<Servico>;
@@ -24,4 +24,4 @@ export class Empresa {
     public getServicos(): Array<Servico> {
         return this.servicos;
     }
-}
+   }

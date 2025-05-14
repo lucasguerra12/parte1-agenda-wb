@@ -1,6 +1,6 @@
 import { Produto } from '../models/Produto';
    import { Entrada } from './Entrada';
-   import { ICadastro } from '../interfaces/ICadastro'; 
+   import { ICadastro } from '../interfaces/ICadastro';
 
    export class CadastroProduto implements ICadastro {
     private produtos: Array<Produto>;
@@ -13,6 +13,7 @@ import { Produto } from '../models/Produto';
 
     cadastrar(): void {
         console.log('\n---- Cadastro de Produto ----\n');
+        this.entrada = new Entrada(); 
         let nome = this.entrada.receberTexto('Digite o nome do produto: ');
 
         let produto = new Produto(nome);
@@ -23,6 +24,7 @@ import { Produto } from '../models/Produto';
 
     atualizar(): void {
         console.log('\n---- Atualizar Produto ----\n');
+        this.entrada = new Entrada(); 
         let nome = this.entrada.receberTexto('Digite o nome do produto que deseja atualizar: ');
         let produtoEncontrado = this.produtos.find(p => p.getNome() === nome);
 
@@ -37,6 +39,7 @@ import { Produto } from '../models/Produto';
 
     excluir(): void {
         console.log('\n---- Excluir Produto ----\n');
+        this.entrada = new Entrada(); 
         let nome = this.entrada.receberTexto('Digite o nome do produto que deseja excluir: ');
         let indice = this.produtos.findIndex(p => p.getNome() === nome);
 
