@@ -30,7 +30,8 @@ import { Empresa } from '../classes/Empresa';
         console.log('8 - Cadastrar Serviço');
         console.log('9 - Atualizar Serviço');
         console.log('10 - Excluir Serviço');
-        console.log('11 - Registrar Consumo'); // Nova opção
+        console.log('11 - Registrar Consumo');
+        console.log('12 - Top 10 Clientes Mais Consumiram'); 
         console.log('0 - Sair');
 
         let opcao = entrada.receberNumero('Por favor, escolha uma opção: ');
@@ -103,6 +104,10 @@ import { Empresa } from '../classes/Empresa';
                 break;
             default:
                 console.log('\nOpção inválida.\n');
+            
+            case 12:
+                empresa.listarTop10Consumidores();
+                break;
         }
     }
    }
