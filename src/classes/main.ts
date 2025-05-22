@@ -32,6 +32,7 @@ import { Empresa } from '../classes/Empresa';
         console.log('10 - Excluir Serviço');
         console.log('11 - Registrar Consumo');
         console.log('12 - Top 10 Clientes Mais Consumiram'); 
+        console.log('13 - Listar Clientes por Gênero');
         console.log('0 - Sair');
 
         let opcao = entrada.receberNumero('Por favor, escolha uma opção: ');
@@ -108,6 +109,17 @@ import { Empresa } from '../classes/Empresa';
             case 12:
                 empresa.listarTop10Consumidores();
                 break;
+
+            case 13: 
+                let generoBuscado = entrada.receberTexto('Digite o gênero para filtrar (Ex: Masculino, Feminino, Não Binário): ');
+                empresa.listarClientesPorGenero(generoBuscado);
+                break;
+
+            case 0:
+                execucao = false;
+                console.log('\nEncerrando o programa...\n');
+                break;
+
         }
     }
    }

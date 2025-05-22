@@ -46,4 +46,22 @@ import { Cliente } from '../models/Cliente';
 
         console.log('\n***** Fim da Lista *****\n')
     }
+
+    public listarClientesPorGenero(genero: string): void {
+        console.log(`\n***** Clientes do Gênero: ${genero} *****\n`);
+        const clientesFiltrados = this.clientes.filter(cliente => cliente.getGenero().toLowerCase() === genero.toLowerCase());
+
+        if (clientesFiltrados.length > 0) {
+            clientesFiltrados.forEach((cliente, index) => {
+                console.log(`${index + 1}. Nome: ${cliente.getNome()}`);
+                console.log(`   Nome Social: ${cliente.getNomeSocial()}`);
+                console.log(`   CPF: ${cliente.getCPF().getValor()}`);
+                // Adicione outras informações que desejar
+                console.log('------------------------------');
+            });
+        } else {
+            console.log(`Nenhum cliente do gênero '${genero}' encontrado.`);
+        }
+        console.log('\n***** Fim da Lista *****\n');
+    }
    }

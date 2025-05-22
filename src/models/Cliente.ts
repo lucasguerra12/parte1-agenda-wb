@@ -1,3 +1,5 @@
+// src/models/Cliente.ts
+
 import { CPF } from './CPF';
 import { RG } from './RG';
 import { Telefone } from './Telefone';
@@ -11,16 +13,19 @@ export class Cliente {
  private rgs: Array<RG>;
  private dataCadastro: Date;
  private telefones: Array<Telefone>;
- private produtosConsumidos: Array<Produto> = []; 
- private servicosConsumidos: Array<Servico> = []; 
+ private produtosConsumidos: Array<Produto> = [];
+ private servicosConsumidos: Array<Servico> = [];
+ private genero: string; // Atributo declarado aqui
 
- constructor(nome: string, nomeSocial: string, cpf: CPF) {
+ // CORREÇÃO AQUI: Adicione 'genero: string' como parâmetro do construtor
+ constructor(nome: string, nomeSocial: string, cpf: CPF, genero: string) {
      this.nome = nome;
      this.nomeSocial = nomeSocial;
      this.cpf = cpf;
      this.rgs = [];
      this.dataCadastro = new Date();
      this.telefones = [];
+     this.genero = genero; // Agora 'genero' refere-se ao parâmetro do construtor
  }
 
  public getNome(): string {
@@ -28,8 +33,8 @@ export class Cliente {
  }
 
  public setNome(nome: string): void {
-      this.nome = nome;
-  }
+     this.nome = nome;
+ }
 
  public getNomeSocial(): string {
      return this.nomeSocial;
@@ -69,5 +74,13 @@ export class Cliente {
 
  public adicionarServicoConsumido(servico: Servico): void {
      this.servicosConsumidos.push(servico);
+ }
+
+ public getGenero(): string {
+     return this.genero;
+ }
+
+ public setGenero(genero: string): void {
+     this.genero = genero;
  }
 }

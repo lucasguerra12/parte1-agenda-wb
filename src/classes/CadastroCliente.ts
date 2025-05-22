@@ -21,9 +21,14 @@ export class CadastroCliente implements ICadastro {
         let nomeSocial = this.entrada.receberTexto('Por favor informe o nome social do cliente: ');
         let valorCpf = this.entrada.receberTexto('Por favor informe o número do cpf: ');
         let dataEmissaoCpf = this.entrada.receberTexto('Por favor informe a data de emissão do cpf, no formato dd/mm/aaaa: ');
+        let valorRg = this.entrada.receberTexto('Por favor informe o número do rg: ');
+        let dataEmissaoRg = this.entrada.receberTexto('Por favor informe a data de emissão do rg, no formato dd/mm/aaaa: ');
         let cpf = new CPF(valorCpf, new Date(dataEmissaoCpf));
+        let rg = new RG(valorRg, new Date(dataEmissaoRg));
+        let genero = this.entrada.receberTexto(`Por favor informe o gênero do cliente (Ex: Masculino, Feminino, Não Binário): `);
+        
 
-        let cliente = new Cliente(nome, nomeSocial, cpf);
+        let cliente = new Cliente(nome, nomeSocial, cpf,genero);
         this.clientes.push(cliente);
 
         console.log('\nCadastro concluído :)\n');
