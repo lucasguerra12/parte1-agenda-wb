@@ -33,6 +33,7 @@ import { Empresa } from '../classes/Empresa';
         console.log('11 - Registrar Consumo');
         console.log('12 - Top 10 Clientes Mais Consumiram'); 
         console.log('13 - Listar Clientes por Gênero');
+        console.log('14  - Produtos e Serviços Mais Consumidos (Geral)');
         console.log('0 - Sair');
 
         let opcao = entrada.receberNumero('Por favor, escolha uma opção: ');
@@ -113,6 +114,10 @@ import { Empresa } from '../classes/Empresa';
             case 13: 
                 let generoBuscado = entrada.receberTexto('Digite o gênero para filtrar (Ex: Masculino, Feminino, Não Binário): ');
                 empresa.listarClientesPorGenero(generoBuscado);
+                break;
+
+            case 14: 
+                empresa.listarMaisConsumidosGeral();
                 break;
 
             case 0:

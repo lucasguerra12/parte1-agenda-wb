@@ -56,12 +56,50 @@ import { Cliente } from '../models/Cliente';
                 console.log(`${index + 1}. Nome: ${cliente.getNome()}`);
                 console.log(`   Nome Social: ${cliente.getNomeSocial()}`);
                 console.log(`   CPF: ${cliente.getCPF().getValor()}`);
-                // Adicione outras informações que desejar
+                console.log(`   Gênero: ${cliente.getGenero()}`);
                 console.log('------------------------------');
             });
         } else {
             console.log(`Nenhum cliente do gênero '${genero}' encontrado.`);
         }
+        console.log('\n***** Fim da Lista *****\n');
+    }
+
+    public listarMaisConsumidosGeral(): void {
+        console.log('\n***** Produtos e Serviços Mais Consumidos (Geral - Quantidade) *****\n');
+
+        const contagemConsumo: { [nome: string]: number } = {};
+
+        this.clientes.forEach(cliente => {
+            cliente.getProdutosConsumidos().forEach(produto => {
+                const nomeProduto = produto.getNome();
+                contagemConsumo[nomeProduto] = (contagemConsumo[nomeProduto] || 0) + 1;
+            });
+        });
+
+        
+        this.clientes.forEach(cliente => {
+            cliente.getServicosConsumidos().forEach(servico => {
+                const nomeServico = servico.getNome();
+                contagemConsumo[nomeServico] = (contagemConsumo[nomeServico] || 0) + 1;
+            });
+        });
+
+        const listaOrdenada = Object.keys(contagemConsumo)
+            .map(nome => ({
+                nome: nome,
+                quantidade: contagemConsumo[nome],
+            }))
+            .sort((a, b) => b.quantidade - a.quantidade); 
+
+        if (listaOrdenada.length > 0) {
+            listaOrdenada.forEach((item, index) => {
+                console.log(`${index + 1}. ${item.nome} (Consumido ${item.quantidade} vezes)`);
+            });
+        } else {
+            console.log('Nenhum produto ou serviço consumido ainda.');
+        }
+
         console.log('\n***** Fim da Lista *****\n');
     }
    }
