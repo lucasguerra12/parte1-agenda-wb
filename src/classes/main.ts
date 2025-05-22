@@ -33,7 +33,9 @@ import { Empresa } from '../classes/Empresa';
         console.log('11 - Registrar Consumo');
         console.log('12 - Top 10 Clientes Mais Consumiram'); 
         console.log('13 - Listar Clientes por Gênero');
-        console.log('14  - Produtos e Serviços Mais Consumidos (Geral)');
+        console.log('14 - Produtos e Serviços Mais Consumidos (Geral)');
+        console.log('15 - Produtos e Serviços Mais Consumidos (Por Genero)');
+        console.log('16 - Top 10 Clientes Menos Consumiram');
         console.log('0 - Sair');
 
         let opcao = entrada.receberNumero('Por favor, escolha uma opção: ');
@@ -69,7 +71,7 @@ import { Empresa } from '../classes/Empresa';
             case 10:
                 cadastroServico.excluir();
                 break;
-            case 11: // Nova lógica para registrar consumo
+            case 11: 
                 let nomeCliente = entrada.receberTexto('Digite o nome do cliente: ');
                 let cliente = empresa.getClientes().find(c => c.getNome() === nomeCliente);
 
@@ -118,6 +120,15 @@ import { Empresa } from '../classes/Empresa';
 
             case 14: 
                 empresa.listarMaisConsumidosGeral();
+                break;
+
+            case 15: 
+                let generoParaFiltrar = entrada.receberTexto('Digite o gênero para analisar o consumo (Ex: Masculino, Feminino, Não Binário): ');
+                empresa.listarMaisConsumidosPorGenero(generoParaFiltrar);
+                break;
+
+            case 16: 
+                empresa.listarTop10MenosConsumidores();
                 break;
 
             case 0:

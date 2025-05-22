@@ -102,4 +102,68 @@ import { Cliente } from '../models/Cliente';
 
         console.log('\n***** Fim da Lista *****\n');
     }
-   }
+    public listarMaisConsumidosPorGenero(generoBuscado : string): void {
+        console.log(`\n***** Produtos e Serviços Mais Consumidos (Gênero: ${generoBuscado}  - Quantidade) *****\n`);
+        const contagemConsumo: { [nome: string]: number } = {};
+        const clientesDoGenero = this.clientes.filter(cliente =>
+            cliente.getGenero().toLowerCase() === generoBuscado.toLowerCase()
+        );
+
+        if (clientesDoGenero.length === 0) {
+            console.log(`Nenhum cliente do gênero '${generoBuscado}' encontrado para analisar consumo.`);
+            console.log('\n***** Fim da Lista *****\n');
+            return; 
+        }
+
+        clientesDoGenero.forEach(cliente => {
+            cliente.getProdutosConsumidos().forEach(produto => {
+                const nomeProduto = produto.getNome();
+                contagemConsumo[nomeProduto] = (contagemConsumo[nomeProduto] || 0) + 1;
+            });
+        });
+
+        clientesDoGenero.forEach(cliente => {
+            cliente.getServicosConsumidos().forEach(servico => {
+                const nomeServico = servico.getNome();
+                contagemConsumo[nomeServico] = (contagemConsumo[nomeServico] || 0) + 1;
+            });
+        });      
+        const listaOrdenada = Object.keys(contagemConsumo)
+            .map(nome => ({
+                nome: nome,
+                quantidade: contagemConsumo[nome],
+            }))
+            .sort((a, b) => b.quantidade - a.quantidade); 
+
+        if (listaOrdenada.length > 0) {
+            listaOrdenada.forEach((item, index) => {
+                console.log(`${index + 1}. ${item.nome} (Consumido ${item.quantidade} vezes)`);
+            });
+        } else {
+            console.log(`Nenhum produto ou serviço consumido por clientes do gênero '${generoBuscado}' ainda.`);
+        }
+        console.log('\n***** Fim da Lista *****\n');
+     }
+
+     public listarTop10MenosConsumidores(): void {
+        console.log('\n***** Top 10 Clientes que Menos Consumiram (Quantidade) *****\n');
+
+        const clientesComConsumo = this.clientes.map(cliente => ({
+            cliente: cliente,
+            totalConsumido: cliente.getProdutosConsumidos().length + cliente.getServicosConsumidos().length,
+        }));
+
+        clientesComConsumo.sort((a, b) => a.totalConsumido - b.totalConsumido);      
+        const top10 = clientesComConsumo.slice(0, 10);
+
+        if (top10.length > 0) {
+            top10.forEach((item, index) => {
+                console.log(`${index + 1}. Nome: ${item.cliente.getNome()} (Total Consumido: ${item.totalConsumido})`);
+            });
+        } else {
+            console.log('Nenhum cliente cadastrado ainda.');
+        }
+
+        console.log('\n***** Fim da Lista *****\n');
+    }
+}
