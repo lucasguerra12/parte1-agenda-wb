@@ -166,4 +166,45 @@ import { Cliente } from '../models/Cliente';
 
         console.log('\n***** Fim da Lista *****\n');
     }
+
+    public listarTop5ConsumidoresValor(): void {
+        console.log('\n***** Top 5 Clientes que Mais Consumiram (Valor) *****\n');
+
+        
+        const clientesComValorConsumido = this.clientes.map(cliente => {
+            let totalGasto = 0;
+
+            
+            cliente.getProdutosConsumidos().forEach(produto => {
+                totalGasto += produto.getValor();
+            });
+
+            
+            cliente.getServicosConsumidos().forEach(servico => {
+                totalGasto += servico.getValor();
+            });
+
+            return {
+                cliente: cliente,
+                totalGasto: totalGasto,
+            };
+        });
+
+        
+        clientesComValorConsumido.sort((a, b) => b.totalGasto - a.totalGasto);
+
+        
+        const top5 = clientesComValorConsumido.slice(0, 5);
+
+        if (top5.length > 0) {
+            top5.forEach((item, index) => {
+                
+                console.log(`${index + 1}. Nome: ${item.cliente.getNome()} (Total Gasto: R$ ${item.totalGasto.toFixed(2)})`);
+            });
+        } else {
+            console.log('Nenhum cliente com consumo registrado ainda.');
+        }
+
+        console.log('\n***** Fim da Lista *****\n');
+    }
 }

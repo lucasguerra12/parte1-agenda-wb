@@ -36,6 +36,7 @@ import { Empresa } from '../classes/Empresa';
         console.log('14 - Produtos e Serviços Mais Consumidos (Geral)');
         console.log('15 - Produtos e Serviços Mais Consumidos (Por Genero)');
         console.log('16 - Top 10 Clientes Menos Consumiram');
+        console.log('17 - Top 5 Clientes Mais Consumiram (Valor)');
         console.log('0 - Sair');
 
         let opcao = entrada.receberNumero('Por favor, escolha uma opção: ');
@@ -129,6 +130,10 @@ import { Empresa } from '../classes/Empresa';
 
             case 16: 
                 empresa.listarTop10MenosConsumidores();
+                break;
+
+            case 17: 
+                empresa.listarTop5ConsumidoresValor();
                 break;
 
             case 0:
