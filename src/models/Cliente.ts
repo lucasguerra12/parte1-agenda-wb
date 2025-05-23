@@ -1,4 +1,4 @@
-// src/models/Cliente.ts
+
 
 import { CPF } from './CPF';
 import { RG } from './RG';
@@ -15,9 +15,8 @@ export class Cliente {
  private telefones: Array<Telefone>;
  private produtosConsumidos: Array<Produto> = [];
  private servicosConsumidos: Array<Servico> = [];
- private genero: string; // Atributo declarado aqui
-
- // CORREÇÃO AQUI: Adicione 'genero: string' como parâmetro do construtor
+ private genero: string; 
+ 
  constructor(nome: string, nomeSocial: string, cpf: CPF, genero: string) {
      this.nome = nome;
      this.nomeSocial = nomeSocial;
@@ -25,7 +24,7 @@ export class Cliente {
      this.rgs = [];
      this.dataCadastro = new Date();
      this.telefones = [];
-     this.genero = genero; // Agora 'genero' refere-se ao parâmetro do construtor
+     this.genero = genero; 
  }
 
  public getNome(): string {

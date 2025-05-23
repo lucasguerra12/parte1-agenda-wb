@@ -207,4 +207,30 @@ import { Cliente } from '../models/Cliente';
 
         console.log('\n***** Fim da Lista *****\n');
     }
+
+    public listarProdutos(): void {
+        console.log('\n***** Lista de Produtos *****\n');
+        if (this.produtos.length === 0) {
+            console.log('Nenhum produto cadastrado.');
+            console.log('\n***** Fim da Lista *****\n');
+            return;
+        }
+        this.produtos.forEach((produto, index) => {
+            console.log(`${index + 1}. Nome: ${produto.getNome()} | Valor: R$ ${produto.getValor().toFixed(2)}`);
+        });
+        console.log('\n***** Fim da Lista *****\n');
+    }
+
+    public listarServicos(): void {
+        console.log('\n***** Lista de Serviços *****\n');
+        if (this.servicos.length === 0) {
+            console.log('Nenhum serviço cadastrado.');
+            console.log('\n***** Fim da Lista *****\n');
+            return;
+        }
+        this.servicos.forEach((servico, index) => {
+            console.log(`${index + 1}. Nome: ${servico.getNome()} | Valor: R$ ${servico.getValor().toFixed(2)}`);
+        });
+        console.log('\n***** Fim da Lista *****\n');
+    }
 }
